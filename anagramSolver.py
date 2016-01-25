@@ -1,5 +1,3 @@
-'''Input file format: One line with all words. Each word is separated by a comma.'''
-
 # --- Function that read words from a file and add them to an array.
 #     Input: file path
 #     Output: list of words
@@ -11,7 +9,7 @@ def read_words_from_file(file_path):
 #     Output: 2D-matrix of annagrams
 def find_anagrams(all_words):
 
-	# Initialize array for all annagrams.
+	# Initialize array that will contain all annagrams found.
 	all_annagrams = []
 
 	# When list is empty all words have been added to an annagram list.
@@ -29,17 +27,19 @@ def find_anagrams(all_words):
 		# Iterate through the rest of the words.
 		for word in all_words:
 
-			# 1. check for equal length because it is faster    
-			# 2. if equal length -> sort and check if words are annagrams
+			# 1. check for equal length because if they aren't, then they aren't annagrams.
+			## 1.1 Checking for length is faster than sorting. 
+			##     Would probably save runtime if the list of words was longer
+			# 2. if equal length, then sort the other word and check if they are identical.
 			if len(word[0]) == len(compare_word_sorted) and sorted(word[0]) == compare_word_sorted:
 
-				# Append the found annagram to a list.
+				# Append the found annagram to the list words that are annagrams of each other.
 				annagrams.append(word[0])
 
-				# Remove the found annagrams from the list of all words.
+				# Remove the found annagram from the list of all words.
 				all_words.remove(word)
 
-		# Append the list of new annagrams to the final result.
+		# Append the list of words that are annagrams to the final result.
 		if len(annagrams) > 1: all_annagrams.append(annagrams)
 
 	return all_annagrams
