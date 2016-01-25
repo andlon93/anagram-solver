@@ -4,13 +4,13 @@
 def read_words_from_file(file_path):
 	return [line.split() for line in open(file_path, encoding="UTF-8")]
 
-# --- Function that find all words in an array that are annagrams of each other.
+# --- Function that find all words in an array that are anagrams of each other.
 #     Input: list of words
-#     Output: 2D-matrix of annagrams
+#     Output: 2D-matrix of anagrams
 def find_anagrams(all_words):
 
-	# Initialize array that will contain all annagrams found.
-	all_annagrams = []
+	# Initialize array that will contain all anagrams found.
+	all_anagrams = []
 
 	# Run until all words have been processed.
 	while all_words:
@@ -22,40 +22,40 @@ def find_anagrams(all_words):
 		compare_word_sorted = sorted(compare_word[0])
 
 		# Initialize list that will contain anagrams of the word.
-		annagrams = [compare_word[0]]
+		anagrams = [compare_word[0]]
 		
 		# Iterate through the other words.
 		for word in all_words:
 
-			# 1. check for equal length because if they aren't, then they aren't annagrams.
+			# 1. check for equal length because if they aren't, then they aren't anagrams.
 			# 1.1 Checking for length is faster than sorting. 
 			#     Would probably save runtime if the list of words was longer
 			# 2. if equal length, then sort the other word and check if they are identical.
 			if len(word[0]) == len(compare_word_sorted) and sorted(word[0]) == compare_word_sorted:
 
-				# Append the found annagram to the list.
-				annagrams.append(word[0])
+				# Append the found anagram to the list.
+				anagrams.append(word[0])
 
-				# Remove the found annagram from the list of all words.
+				# Remove the found anagram from the list of all words.
 				all_words.remove(word)
 
-		# Append the list of words that are annagrams of the word to the final result.
-		if len(annagrams) > 1: all_annagrams.append(annagrams)
+		# Append the list of words that are anagrams of the word to the final result.
+		if len(anagrams) > 1: all_anagrams.append(anagrams)
 
-	return all_annagrams
+	return all_anagrams
 
 # --- Main
 #     Input: none
 #     Output: none
 def main():
 
-	# Find all annagrams.
-	annagrams = find_anagrams(read_words_from_file("words.txt"))
+	# Find all anagrams.
+	anagrams = find_anagrams(read_words_from_file("words.txt"))
 
 	# Print result to console.
-	for annagram in annagrams:
+	for anagram in anagrams:
 		temp = ""
-		for word in annagram:
+		for word in anagram:
 			temp = temp + " " + word
 		print(temp)
 
