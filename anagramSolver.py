@@ -12,34 +12,34 @@ def find_anagrams(all_words):
 	# Initialize array that will contain all annagrams found.
 	all_annagrams = []
 
-	# When list is empty all words have been added to an annagram list.
+	# Run until all words have been processed.
 	while all_words:
 
 		# Pop first word in list.
 		compare_word = all_words.pop(0)
 
-		# Sort the compare word.
+		# Sort the word.
 		compare_word_sorted = sorted(compare_word[0])
 
-		# List of anagrams to compare_word.
+		# Initialize list that will contain anagrams of the word.
 		annagrams = [compare_word[0]]
 		
-		# Iterate through the rest of the words.
+		# Iterate through the other words.
 		for word in all_words:
 
 			# 1. check for equal length because if they aren't, then they aren't annagrams.
-			## 1.1 Checking for length is faster than sorting. 
-			##     Would probably save runtime if the list of words was longer
+			# 1.1 Checking for length is faster than sorting. 
+			#     Would probably save runtime if the list of words was longer
 			# 2. if equal length, then sort the other word and check if they are identical.
 			if len(word[0]) == len(compare_word_sorted) and sorted(word[0]) == compare_word_sorted:
 
-				# Append the found annagram to the list words that are annagrams of each other.
+				# Append the found annagram to the list.
 				annagrams.append(word[0])
 
 				# Remove the found annagram from the list of all words.
 				all_words.remove(word)
 
-		# Append the list of words that are annagrams to the final result.
+		# Append the list of words that are annagrams of the word to the final result.
 		if len(annagrams) > 1: all_annagrams.append(annagrams)
 
 	return all_annagrams
